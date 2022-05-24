@@ -1,0 +1,28 @@
+<launch>
+  <!-- No namespace here as we will share this description.
+       Access with slash at the beginning -->
+  <param name="robot_description" 
+    command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro" />
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find multi_robot)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x 0.5 -y 0 -z 0" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find multi_robot)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x -0.5 -y 0 -z 0" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+  </group>
+
+<node pkg="tf" type="static_transform_publisher" name="world_to_rb1"  args="0.5 0 0 0 0 0 /world /robot1_tf/odom 100"/>
+<node pkg="tf" type="static_transform_publisher" name="world_to_rb2"  args="-0.5 0 0 0 0 0 /world /robot2_tf/odom 100"/>
+
+</launch>

@@ -1,0 +1,16 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <!-- start world -->
+  <node name="gazebo" pkg="gazebo_ros" type="gzserver"
+   args="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world" respawn="false" output="screen" />
+
+  <!-- start gui -->
+  <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="true"/>
+
+  <!-- include our robots -->
+  <include file="$(find multi_robot)/launch/robots.launch"/>
+
+  <!-- Start rviz  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find multi_robot)/config/multi_robot.rviz"/>
+</launch>
