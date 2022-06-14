@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find turtlebot3_navigation)/maps/map.yaml" >
+    <param name="frame_id" value="map" />
+  </node>
+
+  <!-- start navigation -->
+   <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <param name="amcl/initial_pose_x" value="0.5" />
+    <param name="amcl/initial_pose_y" value="0" />
+    <param name="amcl/odom_frame_id" value="robot1_tf/odom" />
+    <param name="amcl/base_frame_id" value="robot1_tf/base_link" />
+    <include file="$(find multi_robot)/launch/move_base.launch" />
+  </group>
+
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <param name="amcl/initial_pose_x" value="-0.5" />
+    <param name="amcl/initial_pose_y" value="0" />
+    <param name="amcl/odom_frame_id" value="robot2_tf/odom" />
+    <param name="amcl/base_frame_id" value="robot2_tf/base_link" />
+    <include file="$(find multi_robot)/launch/move_base.launch" />
+  </group>
+
+</launch>

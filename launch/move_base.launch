@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>    
+  <!--- Run AMCL -->
+  <!-- <include file="$(find amcl)/examples/amcl_diff.launch" /> -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <rosparam file="$(find multi_robot)/param/amcl.yaml" command="load"/>
+    <remap from="map" to="/map" />
+  </node>
+
+  <!-- Define your move_base node -->
+  <!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find multi_robot)/param/costmap_common_params_burger.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find multi_robot)/param/costmap_common_params_burger.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find multi_robot)/param/local_costmap_params.yaml"  command="load" />
+    <rosparam file="$(find multi_robot)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find multi_robot)/param/base_local_planner_params.yaml" command="load" />
+    <remap from="map" to="/map" />
+  </node> -->
+</launch>

@@ -1,4 +1,7 @@
+<?xml version="1.0"?>
 <launch>
+  <arg name="nav" value="true" />
+  
   <param name="/use_sim_time" value="true" />
 
   <!-- start world -->
@@ -11,6 +14,20 @@
   <!-- include our robots -->
   <include file="$(find multi_robot)/launch/robots.launch"/>
 
+  <!-- start navigation -->
+  <group if="$(arg nav)">
+    <include file="$(find multi_robot)/launch/navigation.launch"/>
+  </group>
+
+  <!-- dummy tfs if not running move_base -->
+  <group unless="$(arg nav)">
+    <node pkg="tf" type="static_transform_publisher" name="world_to_rb1"  
+      args="0.5 0 0 0 0 0 /world /robot1_tf/odom 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="world_to_rb2"  
+      args="-0.5 0 0 0 0 0 /world /robot2_tf/odom 100"/>
+  </group>
+
   <!-- Start rviz  -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find multi_robot)/config/multi_robot.rviz"/>
+
 </launch>
