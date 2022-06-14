@@ -8,17 +8,10 @@ inflation_radius: 1.0
 cost_scaling_factor: 3.0
 
 map_type: costmap
-observation_sources: "robot1_scan robot2_scan" # TODO: Split this so each robot sees only its own scan
+observation_sources: "robot1_scan"
 robot1_scan: 
   sensor_frame: robot1_tf/base_scan
   data_type: LaserScan
   topic: /robot1/scan 
-  marking: true
-  clearing: true
-
-robot2_scan: 
-  sensor_frame: robot2_tf/base_scan
-  data_type: LaserScan
-  topic: /robot2/scan 
   marking: true
   clearing: true
