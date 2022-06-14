@@ -1,6 +1,6 @@
 local_costmap:
-  global_frame: odom
-  robot_base_frame: base_footprint
+  # global_frame: odom # To be overwritten per robot in launch file
+  # robot_base_frame: base_footprint # To be overwritten per robot in launch file
 
   update_frequency: 10.0
   publish_frequency: 10.0

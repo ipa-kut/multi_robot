@@ -1,6 +1,6 @@
 global_costmap:
   global_frame: map
-  robot_base_frame: base_footprint
+  # robot_base_frame: base_footprint # To be overwritten per robot in launch file
 
   update_frequency: 10.0
   publish_frequency: 10.0

@@ -9,7 +9,7 @@
    args="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world" respawn="false" output="screen" />
 
   <!-- start gui -->
-  <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="true"/>
+  <!-- <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="true"/> -->
 
   <!-- include our robots -->
   <include file="$(find multi_robot)/launch/robots.launch"/>
